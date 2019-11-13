@@ -1,20 +1,20 @@
 
 import { types as t } from 'mobx-state-tree';
-import uuid from 'uuid/v4';
+
 import { TodoListModel } from './TodoStore';
 import { GroupListModel } from './GroupStore';
 
 
 
+
  const RootStore = t
   .model( 'RootStore', {
-    todos: t.optional(  TodoListModel, {} ),
-    groups: t.optional( GroupListModel , {} ),
+    todolist: t.optional(  TodoListModel, {} ),
+    groupslist: t.optional( GroupListModel , {} ),
   }  );
   
  const rootStore = RootStore.create( {} );
- rootStore.todos.add('sss')
- const todo =rootStore.todos.list[0];
- todo.toggleCompleted();
-
+rootStore.groupslist.add('Важливі завдання');
+rootStore.groupslist.add('Завдання');
+rootStore.groupslist.add('Групи');
 export default rootStore;

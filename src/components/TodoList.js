@@ -1,14 +1,17 @@
-import React from "react";
+import React from 'react';
+import { values } from 'mobx';
+import store from '../store/RootStore';
 import TodoItem from "./TodoItem";
 
-const TodoList = (props) => (
-  <React.Fragment>
-    {props.todoArray.map((todo, index) => (
-      <TodoItem key={index} handleRemove={props.handleRemove}>{todo}</TodoItem>
-    ))}
-  </React.Fragment>
-);
+const TodoList = () => (
+  
+  
+    <div>           
+        {values(store.todolist.list).map( (todo) => (
+            <TodoItem todo={todo} key={ todo.id }>{todo}</TodoItem>          
+        ) ) }
+   </div>
 
-
+)
 
 export default TodoList;

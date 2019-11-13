@@ -11,7 +11,51 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.groupList{
+  background-color: gainsboro;
+}
+.todoList{
+  display: flex;
+  flex-direction: column;
+}
+
+ 
 
 .completed {
   text-decoration: line-through;
+  color:red;
+  
+}
+.remove{
+  cursor: pointer;
+
+}
+.listEl{
+  
+  width: 40%;
+  cursor: pointer;
+  list-style-type: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  margin: 10px;
+ 
+}
+.listEl:hover{
+  color:aqua;
+}
+
+
+button{
+  background-color: Transparent;
+  box-shadow:5px ;
+  background-repeat:no-repeat;
+  border-radius: 5px;
+  cursor:pointer;
+  overflow: hidden;
+  padding: 5px;
+  margin:  5px ;
+  font-size: 0.7em;
+}
+button:hover {
+  background-color: #555;
+  color: black;
 }

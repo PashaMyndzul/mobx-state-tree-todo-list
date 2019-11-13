@@ -1,24 +1,17 @@
 import { observer } from 'mobx-react';
 import  React from 'react';
+import '../index.css';
+export const TodoItem = observer( ( { todo } ) =>
+  <ul className='listEl'>
+    <li  className={todo.isCompleted ? 'completed': undefined} >
+      <span  onClick={todo.toggleCompleted}>{todo.title}</span>
+      <button className="remove" onClick={todo.remove}>
+        X
+      </button>
+    </li>
+  </ul>
+  );
 
-//export const TodoTask = observer( ( { todo } ) =>
-  //<li>
-    //<input
-      //type="checkbox"
-      //checked={ todo.completed }
-      //onClick={ todo.toggle }
-    ///>
-    //{ todo.title }
-  //</li>,
-//);
-const TodoItem = observer( (props) => (
-     
-       <li 
-       key={ props.todo.id }
-       className={props.todo.isCompleted ? 'completed': undefined}
-       onClick={() => props.todo.toggleComlpeted} >{props.todo.title} 
-       </li>
-    
-))
+
 
 export default TodoItem;

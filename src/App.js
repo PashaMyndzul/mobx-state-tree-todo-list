@@ -1,29 +1,26 @@
 import React from 'react';
-import { values } from 'mobx';
 import { observer } from 'mobx-react';
-//import  TodoItem  from './components/TodoItem';
-import {TodoListTask} from './components/TodoInput';
-//import { Icon } from './components/Icon';
+import  TodoInput  from './components/TodoInput';
 import store from './store/RootStore';
 import './index.css';
+import TodoList from './components/TodoList';
+import GroupInput from './components/GroupInput';
+import GroupList from './components/GroupList';
+
 
 function App() {
  
      return (
           <div>
-               <ul>
-
-                    {values(store.todos.list).map( (todo) => (
-                        <li 
-                        key={ todo.id }
-                        className={todo.isCompleted ? 'completed': undefined}
-                        onClick={() => todo.toggleComlpeted()} >{todo.title} 
-                        </li>
-                    ) ) }
-
-               </ul>
-               <button type='button' onClick={() => store.todos.add('oil') }>ADD </button>
-              
+            <div className='groupList'>
+               <GroupList />
+              <GroupInput />
+              </div>
+              <div className='todoList'>
+               <h2>{store.todolist.completedTask}</h2>
+               <TodoInput />
+               <TodoList />
+               </div>
           </div>
     
      );

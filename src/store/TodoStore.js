@@ -1,6 +1,6 @@
 
 import uuid from 'uuid/v4';
-import { types as t } from 'mobx-state-tree';
+import { types as t, getParent } from 'mobx-state-tree';
 
 export const TodoModel = t
   .model( 'TodoModel', {
@@ -13,6 +13,11 @@ export const TodoModel = t
     toggleCompleted() {
       store.isCompleted = !store.isCompleted;
     },
+    remove() {
+      store.isCompleted = !store.isCompleted
+      ? alert('Завдання повинно бути виконано перед видаленням') 
+      : getParent(store, 2).remove(store);
+    },
     toggleFavorite() {
       store.isFavorite = !store.isFavorite;
     },
@@ -22,16 +27,16 @@ export const TodoModel = t
   .model( 'TodoListModel', {
     list:  t.array(TodoModel),
   } )
-  .views( (store) => ( {
+  .views( ( store ) => ( {
     get favoriteList() {
       return store.list.filter( item => item.isFavorite );
     },
     get completedTask() {
-      return store.list.filter( todo => todo.isCompleted).length;
+      return "Кількість невиконаних завдань: " + this.list.length;
     },
   } ) )
   .actions( (store) => ( {
-    add(title) {
+    add( title ) {
       const todo =  {
         id: uuid(),
         title,
@@ -39,6 +44,7 @@ export const TodoModel = t
       } ;
       store.list.unshift(todo);
     },
+    remove( todo ){
+      store.list.splice(store.list.indexOf( todo ) , 1 );
+    }
   } ) );
-///const todoList = TodoListModel.create();
-//  export default  todoStore;

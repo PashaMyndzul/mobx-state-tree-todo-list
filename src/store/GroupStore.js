@@ -1,6 +1,6 @@
 
 import uuid from 'uuid/v4';
-import { types as t } from 'mobx-state-tree';
+import { types as t , getParent} from 'mobx-state-tree';
 
 import { TodoModel } from './TodoStore';
 
@@ -16,6 +16,10 @@ const GroupModel = t
     addTodo( todo ) {
       store.todos.unshift( todo );
     },
+    remove() {
+      getParent(store, 2).remove(store);
+    },
+    
   } ) );
   
 export const GroupListModel = t
@@ -35,6 +39,9 @@ export const GroupListModel = t
       } ;
       store.list.unshift(group);
     },
+    remove( todo ){
+      store.list.splice(store.list.indexOf( todo ) , 1 );
+    }
   } ) );
 
 
